@@ -32,6 +32,10 @@ jobs:
           java-version: "17"
           cache: "maven"
 
+      - name: Ensure Maven wrapper is executable
+        working-directory: regist
+        run: chmod +x mvnw
+
       - name: Build backend
         working-directory: regist
         run: ./mvnw -B -DskipTests package
