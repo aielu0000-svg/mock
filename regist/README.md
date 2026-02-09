@@ -20,6 +20,12 @@
 * `frontend/` で `npm run build`
 * 生成された `frontend/dist/` を `src/main/resources/static/` に配置する
 
+### Node.jsが使えない場合（GitHub Actionsでビルドして取り込む）
+
+1. GitHub Actions の `build` ワークフローが成功したら、Actions画面の成果物から **`frontend-dist`** をダウンロード
+2. 展開した `dist/` の中身を `src/main/resources/static/` にコピー
+3. Spring Bootを起動して `http://localhost:8080` で配信確認
+
 ---
 
 ## 1) まず決めること（最小設計）
