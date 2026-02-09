@@ -18,24 +18,30 @@ export function MemberEditPage() {
   }, [id]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="text-xl font-semibold">会員情報（編集）</h1>
+    <>
+      <h1 className="page-title">会員情報（編集）</h1>
 
-      <div className="text-sm text-muted-fg">
-        <Link className="underline" to="/signup">
-          戻る（Signup）
-        </Link>
+      <div className="notice">
+        <p className="notice__text">登録内容を確認してください。</p>
+        <ul className="notice__list">
+          <li>編集内容の保存はこの画面で行います。</li>
+          <li>入力内容が不明な場合は前の画面に戻れます。</li>
+        </ul>
+      </div>
+
+      <div className="help-text">
+        <Link to="/signup">戻る（会員登録）</Link>
       </div>
 
       {err ? (
-        <div className="rounded-md border border-danger/40 bg-warn-bg p-3 text-sm text-danger">{err}</div>
+        <div className="form-error-summary is-visible">{err}</div>
       ) : !data ? (
-        <div className="text-sm text-muted-fg">読み込み中...</div>
+        <div className="help-text">読み込み中...</div>
       ) : (
-        <pre className="rounded-md border border-border bg-muted p-3 text-xs overflow-auto">
-          {JSON.stringify(data, null, 2)}
-        </pre>
+        <div className="signup-form">
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
       )}
-    </div>
+    </>
   );
 }

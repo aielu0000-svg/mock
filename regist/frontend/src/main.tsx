@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import "./styles/tokens.css";
 import "./styles/globals.css";
+import "./styles/app.css";
 import { router } from "./app/router";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

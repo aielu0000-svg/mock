@@ -9,18 +9,21 @@ export function PasswordRuleList({ value }: Props) {
   const okLen = v.length >= 8 && v.length <= 12;
 
   const Item = ({ ok, label }: { ok: boolean; label: string }) => (
-    <div className="flex items-center gap-2 text-sm">
-      <span className={ok ? "text-primary" : "text-danger"}>{ok ? "○" : "×"}</span>
-      <span className={ok ? "text-fg" : "text-danger"}>{label}</span>
-    </div>
+    <li>
+      <span>{label}</span>
+      <span className={`pw-rules__status ${ok ? "is-ok" : ""}`}>{ok ? "○" : "×"}</span>
+    </li>
   );
 
   return (
-    <div className="mt-2 space-y-1">
-      <Item ok={okLen} label="8〜12文字" />
-      <Item ok={okAlpha} label="英字を含む" />
-      <Item ok={okNum} label="数字を含む" />
-      <Item ok={okSym} label="記号を含む" />
+    <div className="pw-rules">
+      <p className="pw-rules__title">パスワードの条件</p>
+      <ul className="pw-rules__list">
+        <Item ok={okLen} label="8〜12文字" />
+        <Item ok={okAlpha} label="英字を含む" />
+        <Item ok={okNum} label="数字を含む" />
+        <Item ok={okSym} label="記号を含む" />
+      </ul>
     </div>
   );
 }

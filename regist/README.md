@@ -3,6 +3,31 @@
 
 ---
 
+## SPA化の進め方（現在の構成）
+
+* **Spring BootはAPI専用**（`/api` 配下のみ提供）
+* **画面は `frontend/` のReact SPA**で提供し、Vite dev serverで確認
+* Vite dev serverからSpring Bootへは **`/api` のプロキシ**で接続
+
+### すぐ動かす最小手順
+
+1. Spring Bootを起動（`./mvnw spring-boot:run`）
+2. `frontend/` で `npm install && npm run dev`
+3. `http://localhost:5173` でSPAを確認
+
+### ビルドしてSpring Boot配信に寄せる場合
+
+* `frontend/` で `npm run build`
+* 生成された `frontend/dist/` を `src/main/resources/static/` に配置する
+
+### Node.jsが使えない場合（GitHub Actionsでビルドして取り込む）
+
+1. GitHub Actions の `build` ワークフローが成功したら、Actions画面の成果物から **`frontend-dist`** をダウンロード
+2. 展開した `dist/` の中身を `src/main/resources/static/` にコピー
+3. Spring Bootを起動して `http://localhost:8080` で配信確認
+
+---
+
 ## 1) まず決めること（最小設計）
 
 ### 画面（2ページ）
@@ -26,14 +51,13 @@
 
 * Spring Web
 * Validation（入力チェックするなら）
-* Thymeleaf（**使っても使わなくてもOK**。レイアウトだけに薄く使うのはあり）
 * Spring Data JPA
 * MariaDB Driver
 
-### Step B：HTML 1枚を置く
+### Step B：SPAの入口を用意する
 
-* `templates/signup.html`（入力フォーム）
-* `static/app.js`（登録ボタン押下→API呼び出し→ポップアップ→遷移）
+* `frontend/src` にReactの画面を作る
+* `POST /api/members` を呼び出し、成功時に `member/{id}/edit` へ遷移させる
 
 ### Step C：APIを作る（`POST /api/members`）
 
@@ -42,7 +66,7 @@
 
 ### Step D：編集ページ（最初はダミーでOK）
 
-* `GET /member/{id}/edit` は、とりあえず固定HTMLでOK
+* `member/{id}/edit` のSPAページを用意して、最初はダミー表示でOK
   （後で「登録情報の読み込みAPI」を追加して埋めていく）
 
 ---
@@ -75,12 +99,11 @@
 
 ## 5) 次にあなたがやる作業（すぐ動く順）
 
-1. VS Codeで Spring Boot雛形作成
-2. `/signup` を返すControllerを作る（HTMLを返すだけ）
-3. `signup.html` と `app.js` を置く
-4. `POST /api/members` を実装して、DBにINSERTしてid返す
-5. 成功したら `alert("登録しました")` → 編集ページへ遷移
-6. `/member/{id}/edit` を仮で用意
+1. Spring Boot雛形作成（APIのみ）
+2. `frontend/` でReactの入力画面を作る
+3. `POST /api/members` を実装して、DBにINSERTしてid返す
+4. 成功したら `alert("登録しました")` → `member/{id}/edit` へ遷移
+5. `member/{id}/edit` のSPAページを仮で用意
 
 ---
 
@@ -91,4 +114,4 @@
 * 成功時に **idを返す**のが重要（編集ページに飛ぶため）。
 * VS Codeで問題なし（Eclipse必須ではない）。
 
-この次は、あなたの入力項目（例：氏名・メール・電話・住所など）に合わせて、**`signup.html` の最小雛形＋`app.js` の処理（登録→ポップアップ→遷移、エラー表示）＋APIのDTO設計**を一式で出します。入力項目は何を想定しますか？（未定ならこちらで「氏名・メール・パスワード」あたりで仮置きして作ります）
+この次は、あなたの入力項目（例：氏名・メール・電話・住所など）に合わせて、**SPAの最小雛形＋登録→ポップアップ→遷移の処理＋APIのDTO設計**を一式で出します。入力項目は何を想定しますか？（未定ならこちらで「氏名・メール・パスワード」あたりで仮置きして作ります）
