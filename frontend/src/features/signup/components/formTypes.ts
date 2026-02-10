@@ -3,6 +3,7 @@ import { SignupFormValue } from '../model/uiTypes';
 
 export type BindField = (key: keyof SignupFormValue) => {
   value: string;
+  disabled: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 };
 

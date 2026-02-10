@@ -8,6 +8,8 @@ type Props = {
 };
 
 export function ContactSection({ bind, errors }: Props) {
+  const newsletterBind = bind('newsletter');
+
   return (
     <section className="form-section">
       <h2 className="section-title">連絡先 <RequiredBadge /></h2>
@@ -30,8 +32,8 @@ export function ContactSection({ bind, errors }: Props) {
       <div className="form-row">
         <div className="form-label"><span className="form-label__text">お知らせメール</span></div>
         <div className="form-control radio-group">
-          <label className="radio-item"><input type="radio" name="newsletter" value="yes" checked={bind('newsletter').value === 'yes'} onChange={bind('newsletter').onChange} />受け取る</label>
-          <label className="radio-item"><input type="radio" name="newsletter" value="no" checked={bind('newsletter').value === 'no'} onChange={bind('newsletter').onChange} />受け取らない</label>
+          <label className="radio-item"><input type="radio" name="newsletter" value="yes" checked={newsletterBind.value === 'yes'} onChange={newsletterBind.onChange} disabled={newsletterBind.disabled} />受け取る</label>
+          <label className="radio-item"><input type="radio" name="newsletter" value="no" checked={newsletterBind.value === 'no'} onChange={newsletterBind.onChange} disabled={newsletterBind.disabled} />受け取らない</label>
           <FieldError message={errors.newsletter} />
         </div>
       </div>

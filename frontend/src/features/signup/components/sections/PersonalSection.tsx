@@ -8,6 +8,8 @@ type Props = {
 };
 
 export function PersonalSection({ bind, errors }: Props) {
+  const genderBind = bind('gender');
+
   return (
     <section className="form-section">
       <h2 className="section-title">個人情報 <RequiredBadge /></h2>
@@ -46,8 +48,8 @@ export function PersonalSection({ bind, errors }: Props) {
       <div className="form-row">
         <div className="form-label"><span className="form-label__text">性別</span></div>
         <div className="form-control radio-group">
-          <label className="radio-item"><input type="radio" name="gender" value="male" checked={bind('gender').value === 'male'} onChange={bind('gender').onChange} />男性</label>
-          <label className="radio-item"><input type="radio" name="gender" value="female" checked={bind('gender').value === 'female'} onChange={bind('gender').onChange} />女性</label>
+          <label className="radio-item"><input type="radio" name="gender" value="male" checked={genderBind.value === 'male'} onChange={genderBind.onChange} disabled={genderBind.disabled} />男性</label>
+          <label className="radio-item"><input type="radio" name="gender" value="female" checked={genderBind.value === 'female'} onChange={genderBind.onChange} disabled={genderBind.disabled} />女性</label>
           <FieldError message={errors.gender} />
         </div>
       </div>

@@ -11,6 +11,7 @@ import { PersonalSection } from './sections/PersonalSection';
 import { FieldErrorSummary } from './parts/FieldErrorSummary';
 import { RequiredRemaining } from './parts/RequiredRemaining';
 import { normalizeFieldErrors } from '../../../shared/api/errors';
+import { SignupFormValue } from '../model/uiTypes';
 
 export function SignupForm() {
   const form = useSignupForm();
@@ -18,6 +19,12 @@ export function SignupForm() {
   const [serverFieldErrors, setServerFieldErrors] = useState<Record<string, string>>({});
   const requiredRemaining = getRequiredRemaining(form.value);
   const passwordStatus = usePasswordRules(form.value.password);
+  const lockCheckKeys: (keyof SignupFormValue)[] = [
+    'lastNameKanji','firstNameKanji','lastNameKana','firstNameKana',
+    'birthYear','birthMonth','birthDay','gender','email',
+    'zip1','zip2','prefecture','addressLine1','addressLine2','tel1','tel2','tel3'
+  ];
+  const hasLockedFields = lockCheckKeys.some((k) => form.isLocked(k));
 
   const mergedErrors = {
     ...form.errors,
@@ -62,6 +69,7 @@ export function SignupForm() {
     <form className="signup-form" onSubmit={onSubmit} noValidate>
       <FieldErrorSummary messages={messages} />
       <RequiredRemaining count={requiredRemaining} />
+      {hasLockedFields && <p className="help-text">※編集画面から戻ったため、基本情報の一部は固定表示です。</p>}
       <PersonalSection bind={form.bind} errors={mergedErrors} />
       <AddressSection bind={form.bind} errors={mergedErrors} />
       <ContactSection bind={form.bind} errors={mergedErrors} />

@@ -8,6 +8,7 @@ const PREFILL_KEY = (window as Window & { SIGNUP_PREFILL_KEY?: string }).SIGNUP_
 export function useSignupForm() {
   const [value, setValue] = useState<SignupFormValue>(defaultSignupFormValue);
   const [submitted, setSubmitted] = useState(false);
+  const [lockedKeys, setLockedKeys] = useState<Set<keyof SignupFormValue>>(new Set());
   const errors = useMemo(() => (submitted ? validateSignup(value) : {}), [submitted, value]);
 
   useEffect(() => {
@@ -16,6 +17,11 @@ export function useSignupForm() {
 
     try {
       const prefill = JSON.parse(raw) as Record<string, string>;
+      const nextLocked = new Set<keyof SignupFormValue>();
+      const mark = (key: keyof SignupFormValue, value?: string) => {
+        if (value != null && String(value).trim() !== '') nextLocked.add(key);
+      };
+
       setValue((prev) => ({
         ...prev,
         lastNameKanji: prefill.lastNameKanji ?? prev.lastNameKanji,
@@ -34,10 +40,31 @@ export function useSignupForm() {
         tel3: prefill.tel3 ?? prev.tel3
       }));
 
+      mark('lastNameKanji', prefill.lastNameKanji);
+      mark('firstNameKanji', prefill.firstNameKanji);
+      mark('lastNameKana', prefill.lastNameKana);
+      mark('firstNameKana', prefill.firstNameKana);
+      mark('gender', prefill.gender);
+      mark('email', prefill.email);
+      mark('zip1', prefill.zip1);
+      mark('zip2', prefill.zip2);
+      mark('prefecture', prefill.prefecture);
+      mark('addressLine1', prefill.addressLine1);
+      mark('addressLine2', prefill.addressLine2);
+      mark('tel1', prefill.tel1);
+      mark('tel2', prefill.tel2);
+      mark('tel3', prefill.tel3);
+
       if (prefill.birthdate?.includes('-')) {
         const [y, m, d] = prefill.birthdate.split('-');
         setValue((prev) => ({ ...prev, birthYear: y || prev.birthYear, birthMonth: m || prev.birthMonth, birthDay: d || prev.birthDay }));
+        mark('birthYear', y);
+        mark('birthMonth', m);
+        mark('birthDay', d);
       }
+
+      setLockedKeys(nextLocked);
+      sessionStorage.removeItem(PREFILL_KEY);
     } catch {
       // no-op
     }
@@ -48,8 +75,10 @@ export function useSignupForm() {
     errors,
     setSubmitted,
     setValue,
+    isLocked: (key: keyof SignupFormValue) => lockedKeys.has(key),
     bind: (key: keyof SignupFormValue) => ({
       value: value[key],
+      disabled: lockedKeys.has(key),
       onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
         setValue((prev) => ({ ...prev, [key]: e.target.value }))
     })
