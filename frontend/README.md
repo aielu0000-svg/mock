@@ -13,6 +13,7 @@
 
 ## Spring への配置先（重要）
 - **配置先は `regist/src/main/resources/static/spa/`** です。
+- リポジトリには空ディレクトリ維持用の `regist/src/main/resources/static/spa/.gitkeep` を配置済みです。
 - `entry.js` / `entry.css` を含む `frontend/dist` の中身をそのまま `static/spa/` 配下へ配置してください。
 - `regist/src/main/resources/` 直下に置いても Spring の静的配信対象にならず、`/spa/entry.js` が 404 になります。
 - ローカルで自動コピーする場合は `frontend/scripts/build-and-export.mjs` を利用してください。
