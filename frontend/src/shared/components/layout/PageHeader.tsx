@@ -8,6 +8,36 @@ export function PageHeader() {
           </a>
         </div>
       </div>
+
+      <nav className="jr-header__bar" aria-label="サービス切替">
+        <div className="jr-header__bar-inner">
+          <a className="jr-tab jr-tab--train" href="#">
+            <span className="jr-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M6 16V6a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v10" />
+                <path d="M4 16h16" />
+                <path d="M7 16l-2 4" />
+                <path d="M17 16l2 4" />
+                <path d="M8 6h8" />
+                <path d="M8 10h8" />
+              </svg>
+            </span>
+            <span className="jr-tab__label">列車予約サービス</span>
+          </a>
+
+          <a className="jr-tab jr-tab--portal is-active" href="#">
+            <span className="jr-tab__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="4" width="7" height="7" rx="1" />
+                <rect x="13" y="4" width="7" height="7" rx="1" />
+                <rect x="4" y="13" width="7" height="7" rx="1" />
+                <rect x="13" y="13" width="7" height="7" rx="1" />
+              </svg>
+            </span>
+            <span className="jr-tab__label">Web会員ポータル</span>
+          </a>
+        </div>
+      </nav>
     </header>
   );
 }
