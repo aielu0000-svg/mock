@@ -16,3 +16,5 @@ Spring Boot API + SPA静的配信の構成です。
 ## 備考
 - 旧MPAテンプレート/JSは削除済みです。
 - フロントエンド成果物は `frontend/dist` を `static/spa/` へ配置してください。
+## 保守ドキュメント
+- `../docs/spa-maintenance-guide-ja.md`

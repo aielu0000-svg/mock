@@ -17,3 +17,5 @@
 - リポジトリには空ディレクトリ維持用の `regist/src/main/resources/static/spa/.gitkeep` を配置済みです。
 - `entry.js` / `entry.css` を含む `frontend/dist` の中身をそのまま `static/spa/` 配下へ配置してください。
 - ローカルで自動コピーする場合は `frontend/scripts/build-and-export.mjs` を利用してください。
+## 保守ドキュメント
+- `../docs/spa-maintenance-guide-ja.md`
