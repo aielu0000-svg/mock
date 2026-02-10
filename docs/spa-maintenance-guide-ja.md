@@ -397,3 +397,36 @@
 - **将来のUI基盤移行（shadcn/ui）余地**
 
 をすでに満たしています。保守は「契約整合」と「段階置換」を守れば安定して進められます。
+
+---
+
+## 8. shadcn/ui 段階移行手順（実装済みフェーズ付き）
+
+`legacy-app.css` で見た目を維持しながら、コンポーネント単位で shadcn/ui を導入します。
+
+### フェーズ1（今回実装）
+
+1. `frontend/src/lib/utils.ts` に `cn` ユーティリティを追加。
+2. `frontend/src/shared/components/ui/` に shadcn互換の `Button` / `Alert` を追加。
+3. signup 画面の低リスク領域を置換。
+   - エラーサマリ: `FieldErrorSummary` → `Alert`
+   - 必須件数ボックス: `RequiredRemaining` → `Alert`
+   - 送信ボタン: `button` → `Button`
+
+### フェーズ2（次の推奨）
+
+1. 入力系（`Input`, `Select`, `RadioGroup`）を `ui/` へ追加。
+2. `PersonalSection` / `AddressSection` から順に置換（項目数が少ない箇所から）。
+3. 1セクションごとに目視確認（hover/focus/disabled）を実施。
+
+### フェーズ3（最終）
+
+1. `legacy-app.css` 依存のクラスを棚卸し。
+2. トークンへ寄せられる色・余白を Tailwind + token へ移管。
+3. 使用されなくなった legacy スタイルを削除。
+
+### 移行時のチェックポイント
+
+- API契約（`/api/members`, `/api/members/{id}`）は変更しない。
+- `PageController` の SPA フォワード動線は変更しない。
+- 画面差分は「同等」を目標にし、完全一致に固執しすぎない（特にフォーカスリング）。

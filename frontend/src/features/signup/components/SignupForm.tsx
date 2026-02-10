@@ -13,6 +13,7 @@ import { FieldErrorSummary } from './parts/FieldErrorSummary';
 import { RequiredRemaining } from './parts/RequiredRemaining';
 import { normalizeFieldErrors } from '../../../shared/api/errors';
 import { SignupFormValue } from '../model/uiTypes';
+import { Button } from '../../../shared/components/ui/button';
 
 const REQUIRED_MESSAGES: Partial<Record<keyof SignupFormValue, string>> = {
   lastNameKanji: '姓を入力してください。',
@@ -134,7 +135,7 @@ export function SignupForm() {
         onTogglePassword={() => setShowPassword((prev) => !prev)}
         submitted={form.submitted}
       />
-      <div className="form-actions"><button className="button button--primary" type="submit" id="next">登録</button></div>
+      <div className="form-actions"><Button className="button button--primary" type="submit" id="next" size="lg">登録</Button></div>
     </form>
   );
 }
