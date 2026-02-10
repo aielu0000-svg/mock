@@ -20,4 +20,14 @@ public class PageController {
     public String editSpa(@PathVariable String id) {
         return "index";
     }
+
+    @GetMapping("/legacy/signup")
+    public String signupLegacy() {
+        return "signup";
+    }
+
+    @GetMapping("/legacy/member/{id}/edit")
+    public String editLegacy(@PathVariable String id) {
+        return "member-edit";
+    }
 }
