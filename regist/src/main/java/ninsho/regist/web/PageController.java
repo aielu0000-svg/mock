@@ -11,14 +11,23 @@ public class PageController {
         return "redirect:/signup";
     }
 
-
     @GetMapping("/signup")
-    public String signup() {
-        return "signup";
+    public String signupSpa() {
+        return "index";
     }
 
     @GetMapping("/member/{id}/edit")
-    public String edit(@PathVariable String id) {
+    public String editSpa(@PathVariable String id) {
+        return "index";
+    }
+
+    @GetMapping("/legacy/signup")
+    public String signupLegacy() {
+        return "signup";
+    }
+
+    @GetMapping("/legacy/member/{id}/edit")
+    public String editLegacy(@PathVariable String id) {
         return "member-edit";
     }
 }

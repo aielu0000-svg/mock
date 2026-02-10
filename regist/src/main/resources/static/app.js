@@ -536,10 +536,16 @@
     }
   }
 
-  onReady(() => {
+  function initSignupPage() {
+    const form = qs("signupForm");
+    if (!form || form.dataset.signupInitDone === "1") return;
+    form.dataset.signupInitDone = "1";
     bindPasswordTogglePair();
     bindPasswordValidation();
     bindRequiredRemaining();
     bindSubmitToApi();
-  });
+  }
+
+  window.initSignupPage = initSignupPage;
+  onReady(initSignupPage);
 })();
