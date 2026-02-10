@@ -80,7 +80,7 @@ export function PasswordSection({ register, errors, submitCount, watch }: Props)
             <span className="pw-note">半角英字・数字・記号を含む8〜12文字</span>
           </div>
           <PasswordRuleList value={pw} />
-          <FieldError message={showRequiredErrors ? (errors.password?.message as string) : ""} />
+          <FieldError field="password" message={showRequiredErrors ? (errors.password?.message as string) : ""} />
         </div>
       </div>
 
@@ -101,7 +101,7 @@ export function PasswordSection({ register, errors, submitCount, watch }: Props)
                 }`}
                 type={visible ? "text" : "password"}
                 {...register("passwordConfirm", {
-                  required: "パスワード（確認用）を入力してください。",
+                  required: "パスワード確認用を入力してください。",
                   validate: (v) => {
                     const s = (v || "").toString();
                     if (!s) return true;
@@ -121,7 +121,10 @@ export function PasswordSection({ register, errors, submitCount, watch }: Props)
               </button>
             </div>
           </div>
-          <FieldError message={showRequiredErrors ? ((errors.passwordConfirm?.message as string) || mismatch) : ""} />
+          <FieldError
+            field="passwordConfirm"
+            message={showRequiredErrors ? ((errors.passwordConfirm?.message as string) || mismatch) : ""}
+          />
         </div>
       </div>
     </section>

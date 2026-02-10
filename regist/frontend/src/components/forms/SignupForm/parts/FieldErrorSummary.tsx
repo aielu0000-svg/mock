@@ -4,7 +4,7 @@ type Props = { messages: string[] };
 export function FieldErrorSummary({ messages }: Props) {
   if (!messages.length) return null;
   return (
-    <div className="form-error-summary is-visible" role="alert">
+    <div id="formErrorSummary" className="form-error-summary is-visible" role="alert">
       <ul>
         {messages.map((m, i) => (
           <li key={i}>{m}</li>

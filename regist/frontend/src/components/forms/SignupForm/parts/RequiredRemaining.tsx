@@ -7,7 +7,9 @@ export function RequiredRemaining({ remaining }: Props) {
     <>
       <div className="required-remaining" aria-live="polite">
         <span className="required-remaining__label">必須項目残り</span>
-        <span className="required-remaining__count">{remaining}</span>
+        <span id="requiredRemaining" className="required-remaining__count">
+          {remaining}
+        </span>
       </div>
 
       <div className="required-callout" aria-hidden="true">
