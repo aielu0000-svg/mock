@@ -19,11 +19,36 @@ export function PersonalSection({ bind, errors }: Props) {
           <FieldError message={errors.lastNameKanji || errors.firstNameKanji} />
         </div>
       </div>
+
       <div className="form-row">
         <div className="form-label"><span className="form-label__text">お名前（カナ）</span></div>
         <div className="form-control input-pair">
           <input className="input-text" placeholder="セイ" {...bind('lastNameKana')} />
           <input className="input-text" placeholder="メイ" {...bind('firstNameKana')} />
+          <FieldError message={errors.lastNameKana || errors.firstNameKana} />
+        </div>
+      </div>
+
+      <div className="form-row">
+        <div className="form-label"><span className="form-label__text">生年月日</span></div>
+        <div className="form-control input-pair">
+          <input className="input-text" placeholder="YYYY" {...bind('birthYear')} />
+          <select className="input-select" {...bind('birthMonth')}>
+            {Array.from({ length: 12 }, (_, i) => `${String(i + 1).padStart(2, '0')}`).map((m) => <option key={m} value={m}>{m}</option>)}
+          </select>
+          <select className="input-select" {...bind('birthDay')}>
+            {Array.from({ length: 31 }, (_, i) => `${String(i + 1).padStart(2, '0')}`).map((d) => <option key={d} value={d}>{d}</option>)}
+          </select>
+          <FieldError message={errors.birthYear || errors.birthMonth || errors.birthDay} />
+        </div>
+      </div>
+
+      <div className="form-row">
+        <div className="form-label"><span className="form-label__text">性別</span></div>
+        <div className="form-control radio-group">
+          <label className="radio-item"><input type="radio" name="gender" value="male" checked={bind('gender').value === 'male'} onChange={bind('gender').onChange} />男性</label>
+          <label className="radio-item"><input type="radio" name="gender" value="female" checked={bind('gender').value === 'female'} onChange={bind('gender').onChange} />女性</label>
+          <FieldError message={errors.gender} />
         </div>
       </div>
     </section>
