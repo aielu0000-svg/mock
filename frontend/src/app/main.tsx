@@ -5,6 +5,8 @@ import { router } from './router';
 import { AppProviders } from './providers';
 import '../shared/styles/globals.css';
 
+(window as Window & { __SPA_BOOTED__?: boolean }).__SPA_BOOTED__ = true;
+
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AppProviders>
