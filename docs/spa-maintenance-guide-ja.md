@@ -424,7 +424,7 @@
 
 1. `legacy-app.css` 依存のクラスを棚卸し。 ✅（初回）
 2. トークンへ寄せられる色・余白を Tailwind + token へ移管。
-3. 使用されなくなった legacy スタイルを削除。 ✅（`site-header*` / `site-brand*` / `site-nav__item` / `stepper*` を削除）
+3. 使用されなくなった legacy スタイルを削除。 ✅（`site-header*` / `site-brand*` / `site-nav__item` / `stepper*` / `required-remaining*` を削除）
 
 ### 移行時のチェックポイント
 

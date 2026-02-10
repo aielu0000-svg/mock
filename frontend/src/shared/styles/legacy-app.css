@@ -150,28 +150,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 .notice__list{margin:0; padding-left:18px; color:var(--muted); font-size:13px}
 .notice__list li{margin:2px 0}
 
-.required-remaining{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:0 0 10px;
-  color:var(--muted);
-  font-size:13px;
-}
-.required-remaining__label{font-weight:700}
-.required-remaining__count{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:30px;
-  padding:2px 8px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid var(--line);
-  color:#111;
-  font-weight:800;
-}
-
 .signup-form{
   background:var(--panel);
   border:1px solid var(--line);
