@@ -413,11 +413,12 @@
    - 必須件数ボックス: `RequiredRemaining` → `Alert`
    - 送信ボタン: `button` → `Button`
 
-### フェーズ2（今回までで一部実装）
+### フェーズ2（今回で完了）
 
 1. 入力系（`Input`, `Select`, `RadioGroup`）を `ui/` へ追加。 ✅
 2. `PersonalSection` を新プリミティブへ置換。 ✅
-3. 次は `AddressSection` / `ContactSection` を同様に置換し、1セクションごとに目視確認（hover/focus/disabled）を実施。
+3. `AddressSection` / `ContactSection` を同様に置換。 ✅
+4. 1セクションごとに目視確認（hover/focus/disabled）を実施。
 
 ### フェーズ3（最終）
 

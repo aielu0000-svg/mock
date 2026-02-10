@@ -1,6 +1,9 @@
 import { BindField, SignupValidationErrors } from '../formTypes';
 import { RequiredBadge } from '../parts/RequiredBadge';
 import { FieldError } from '../parts/FieldError';
+import { Input } from '../../../../shared/components/ui/input';
+import { Select } from '../../../../shared/components/ui/select';
+import { Button } from '../../../../shared/components/ui/button';
 
 type Props = {
   bind: BindField;
@@ -31,10 +34,10 @@ export function AddressSection({ bind, errors }: Props) {
         </div>
         <div className="form-control">
           <div className="input-zip">
-            <input className="input-text input-zip1" maxLength={3} inputMode="numeric" {...zip1} />
+            <Input className="input-text input-zip1" maxLength={3} inputMode="numeric" {...zip1} />
             <span className="unit-text">-</span>
-            <input className="input-text input-zip2" maxLength={4} inputMode="numeric" {...zip2} />
-            <button className="button button--secondary" type="button">住所検索</button>
+            <Input className="input-text input-zip2" maxLength={4} inputMode="numeric" {...zip2} />
+            <Button className="button button--secondary" variant="secondary" type="button">住所検索</Button>
           </div>
           <FieldError message={errors.zip1 || errors.zip2} />
           <p className="help-text">半角3桁-4桁</p>
@@ -46,10 +49,10 @@ export function AddressSection({ bind, errors }: Props) {
           <span className="form-label__text">都道府県<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
         </div>
         <div className="form-control">
-          <select className="input-select" {...prefecture}>
+          <Select className="input-select" {...prefecture}>
             <option value="">選択してください</option>
             {PREFECTURES.map((p) => <option key={p} value={p}>{p}</option>)}
-          </select>
+          </Select>
           <FieldError message={errors.prefecture} />
         </div>
       </div>
@@ -59,7 +62,7 @@ export function AddressSection({ bind, errors }: Props) {
           <span className="form-label__text">市区町村・番地<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
         </div>
         <div className="form-control">
-          <input className="input-text" maxLength={25} {...addressLine1} />
+          <Input className="input-text" maxLength={25} {...addressLine1} />
           <FieldError message={errors.addressLine1} />
           <p className="help-text">全角25文字以内</p>
         </div>
@@ -71,7 +74,7 @@ export function AddressSection({ bind, errors }: Props) {
           <span className="badge badge--optional">任意</span>
         </div>
         <div className="form-control">
-          <input className="input-text" maxLength={25} {...addressLine2} />
+          <Input className="input-text" maxLength={25} {...addressLine2} />
           <p className="help-text">全角25文字以内</p>
         </div>
       </div>

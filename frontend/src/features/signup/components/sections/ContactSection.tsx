@@ -1,6 +1,8 @@
 import { BindField, SignupValidationErrors } from '../formTypes';
 import { RequiredBadge } from '../parts/RequiredBadge';
 import { FieldError } from '../parts/FieldError';
+import { Input } from '../../../../shared/components/ui/input';
+import { RadioGroup, RadioGroupItem } from '../../../../shared/components/ui/radio-group';
 
 type Props = {
   bind: BindField;
@@ -24,11 +26,11 @@ export function ContactSection({ bind, errors }: Props) {
         </div>
         <div className="form-control">
           <div className="input-tel">
-            <input className="input-text input-tel1" maxLength={5} inputMode="numeric" {...tel1} />
+            <Input className="input-text input-tel1" maxLength={5} inputMode="numeric" {...tel1} />
             <span className="unit-text">-</span>
-            <input className="input-text input-tel2" maxLength={5} inputMode="numeric" {...tel2} />
+            <Input className="input-text input-tel2" maxLength={5} inputMode="numeric" {...tel2} />
             <span className="unit-text">-</span>
-            <input className="input-text input-tel3" maxLength={4} inputMode="numeric" {...tel3} />
+            <Input className="input-text input-tel3" maxLength={4} inputMode="numeric" {...tel3} />
           </div>
           <FieldError message={errors.tel1 || errors.tel2 || errors.tel3} />
           <p className="help-text">半角</p>
@@ -40,7 +42,7 @@ export function ContactSection({ bind, errors }: Props) {
           <label className="form-label__text">メールアドレス（Web会員ID）<span className="required-asterisk">＊</span><span className="sr-only">必須</span></label>
         </div>
         <div className="form-control">
-          <input className="input-text" type="email" autoComplete="email" {...email} />
+          <Input className="input-text" type="email" autoComplete="email" {...email} />
           <FieldError message={errors.email} />
         </div>
       </div>
@@ -50,8 +52,10 @@ export function ContactSection({ bind, errors }: Props) {
           <span className="form-label__text">お知らせメール<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
         </div>
         <div className="form-control radio-group">
-          <label className="radio-item"><input type="radio" name="newsletter" value="yes" checked={newsletterBind.value === 'yes'} onChange={newsletterBind.onChange} disabled={newsletterBind.disabled} />受け取る</label>
-          <label className="radio-item"><input type="radio" name="newsletter" value="no" checked={newsletterBind.value === 'no'} onChange={newsletterBind.onChange} disabled={newsletterBind.disabled} />受け取らない</label>
+          <RadioGroup className="radio-group">
+            <label className="radio-item"><RadioGroupItem name="newsletter" value="yes" checked={newsletterBind.value === 'yes'} onChange={newsletterBind.onChange} disabled={newsletterBind.disabled} />受け取る</label>
+            <label className="radio-item"><RadioGroupItem name="newsletter" value="no" checked={newsletterBind.value === 'no'} onChange={newsletterBind.onChange} disabled={newsletterBind.disabled} />受け取らない</label>
+          </RadioGroup>
           <FieldError message={errors.newsletter} />
           <p className="help-text">キャンペーンやおすすめ情報などのメールマガジンをお送りします。</p>
         </div>
