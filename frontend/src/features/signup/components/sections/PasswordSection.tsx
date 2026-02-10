@@ -1,7 +1,13 @@
+import { BindField, PasswordStatus } from '../formTypes';
 import { PasswordGuidance } from '../parts/PasswordGuidance';
 import { PasswordRuleList } from '../parts/PasswordRuleList';
 
-export function PasswordSection({ bind, status }: any) {
+type Props = {
+  bind: BindField;
+  status: PasswordStatus;
+};
+
+export function PasswordSection({ bind, status }: Props) {
   return (
     <section className="form-section">
       <h2 className="section-title">パスワード</h2>

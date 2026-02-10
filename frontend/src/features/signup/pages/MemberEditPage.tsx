@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMember } from '../api/getMember';
+import { MemberView } from '../api/members.types';
 import { AppShell } from '../../../shared/components/layout/AppShell';
 
 export function MemberEditPage() {
   const { id } = useParams();
-  const [view, setView] = useState<any>(null);
+  const [view, setView] = useState<MemberView | null>(null);
 
   useEffect(() => {
     if (!id) return;

@@ -1,6 +1,9 @@
+import { BindField } from '../formTypes';
 import { RequiredBadge } from '../parts/RequiredBadge';
 
-export function AddressSection({ bind }: any) {
+type Props = { bind: BindField };
+
+export function AddressSection({ bind }: Props) {
   return (
     <section className="form-section">
       <h2 className="section-title">住所 <RequiredBadge /></h2>

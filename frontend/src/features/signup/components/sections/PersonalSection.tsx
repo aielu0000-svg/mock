@@ -1,7 +1,13 @@
+import { BindField, SignupValidationErrors } from '../formTypes';
 import { FieldError } from '../parts/FieldError';
 import { RequiredBadge } from '../parts/RequiredBadge';
 
-export function PersonalSection({ bind, errors }: any) {
+type Props = {
+  bind: BindField;
+  errors: SignupValidationErrors;
+};
+
+export function PersonalSection({ bind, errors }: Props) {
   return (
     <section className="form-section">
       <h2 className="section-title">個人情報 <RequiredBadge /></h2>
