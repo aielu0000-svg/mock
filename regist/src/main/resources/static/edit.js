@@ -1,61 +1,63 @@
-// src/main/resources/static/edit.js
 (() => {
   "use strict";
 
   const KEY = (typeof window !== "undefined" && window.SIGNUP_PREFILL_KEY) ? window.SIGNUP_PREFILL_KEY : "signupPrefill";
 
-  const path = location.pathname; // /member/{id}/edit
-  const m = path.match(/^\/member\/([^/]+)\/edit\/?$/);
-  const id = m ? decodeURIComponent(m[1]) : null;
+  function initMemberEditPage() {
+    const path = location.pathname; // /member/{id}/edit
+    const m = path.match(/^\/member\/([^/]+)\/edit\/?$/);
+    const id = m ? decodeURIComponent(m[1]) : null;
 
-  const root = document.getElementById("memberView");
-  const btn = document.getElementById("goSignupPrefill");
+    const root = document.getElementById("memberView");
+    const btn = document.getElementById("goSignupPrefill");
 
-  if (!root) return;
+    if (!root || root.dataset.memberEditInitDone === "1") return;
+    root.dataset.memberEditInitDone = "1";
 
-  if (!id) {
-    root.textContent = "IDが取得できませんでした。URLをご確認ください。";
-    if (btn) btn.disabled = true;
-    return;
-  }
-
-  let current = null;
-
-  if (btn) {
-    btn.addEventListener("click", () => {
-      if (!current) {
-        alert("登録情報が読み込めていません。少し待ってから再度お試しください。");
-        return;
-      }
-      const prefill = toSignupPrefill(current);
-      sessionStorage.setItem(KEY, JSON.stringify(prefill));
-      location.href = "/signup";
-    });
-  }
-
-  load(id);
-
-  async function load(memberId) {
-    try {
-      const res = await fetch(`/api/members/${encodeURIComponent(memberId)}`, {
-        headers: { "Accept": "application/json" },
-      });
-
-      if (!res.ok) {
-        root.textContent = res.status === 404
-          ? "登録情報が見つかりません（サーバ再起動後など）。"
-          : `取得に失敗しました（HTTP ${res.status}）`;
-        if (btn) btn.disabled = true;
-        return;
-      }
-
-      const data = await res.json();
-      current = data;
-      root.innerHTML = render(data);
-      if (btn) btn.disabled = false;
-    } catch (e) {
-      root.textContent = "通信に失敗しました。";
+    if (!id) {
+      root.textContent = "IDが取得できませんでした。URLをご確認ください。";
       if (btn) btn.disabled = true;
+      return;
+    }
+
+    let current = null;
+
+    if (btn) {
+      btn.addEventListener("click", () => {
+        if (!current) {
+          alert("登録情報が読み込めていません。少し待ってから再度お試しください。");
+          return;
+        }
+        const prefill = toSignupPrefill(current);
+        sessionStorage.setItem(KEY, JSON.stringify(prefill));
+        location.href = "/signup";
+      });
+    }
+
+    load(id);
+
+    async function load(memberId) {
+      try {
+        const res = await fetch(`/api/members/${encodeURIComponent(memberId)}`, {
+          headers: { "Accept": "application/json" },
+        });
+
+        if (!res.ok) {
+          root.textContent = res.status === 404
+            ? "登録情報が見つかりません（サーバ再起動後など）。"
+            : `取得に失敗しました（HTTP ${res.status}）`;
+          if (btn) btn.disabled = true;
+          return;
+        }
+
+        const data = await res.json();
+        current = data;
+        root.innerHTML = render(data);
+        if (btn) btn.disabled = false;
+      } catch (e) {
+        root.textContent = "通信に失敗しました。";
+        if (btn) btn.disabled = true;
+      }
     }
   }
 
@@ -91,19 +93,13 @@
     `;
   }
 
-  // ------------------------------
-  // Prefill mapping (prefill.js のキー設計に合わせる)
-  // ------------------------------
   function toSignupPrefill(d) {
     const out = {};
-
-    // 氏名（漢字/カナ）
     out.lastNameKanji = d?.name?.lastKanji ?? "";
     out.firstNameKanji = d?.name?.firstKanji ?? "";
     out.lastNameKana = d?.name?.lastKana ?? "";
     out.firstNameKana = d?.name?.firstKana ?? "";
 
-    // 生年月日（prefill.js は birthdate でも可）
     const y = d?.birthDate?.year;
     const m = d?.birthDate?.month;
     const day = d?.birthDate?.day;
@@ -111,23 +107,16 @@
       out.birthdate = `${pad4(y)}-${pad2(m)}-${pad2(day)}`;
     }
 
-    // 性別
     out.gender = d?.gender ?? "";
-
-    // メール
     out.email = d?.email ?? "";
 
-    // 郵便番号（zip1/zip2）
     if (d?.address?.zip1 != null) out.zip1 = String(d.address.zip1);
     if (d?.address?.zip2 != null) out.zip2 = String(d.address.zip2);
 
-    // 住所
     out.prefecture = d?.address?.prefecture ?? "";
     out.addressLine1 = d?.address?.line1 ?? "";
-    // 任意（渡ってきたらロックされる）
     out.addressLine2 = d?.address?.line2 ?? "";
 
-    // 電話番号（tel1/tel2/tel3）
     if (d?.phone?.tel1 != null) out.tel1 = String(d.phone.tel1);
     if (d?.phone?.tel2 != null) out.tel2 = String(d.phone.tel2);
     if (d?.phone?.tel3 != null) out.tel3 = String(d.phone.tel3);
@@ -139,9 +128,17 @@
     const n = String(v ?? "");
     return n.length === 1 ? `0${n}` : n;
   }
+
   function pad4(v) {
     const n = String(v ?? "");
     if (n.length >= 4) return n;
     return ("0000" + n).slice(-4);
+  }
+
+  window.initMemberEditPage = initMemberEditPage;
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMemberEditPage, { once: true });
+  } else {
+    initMemberEditPage();
   }
 })();
