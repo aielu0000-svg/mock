@@ -6,6 +6,7 @@ import { getRequiredRemaining } from '../hooks/useRequiredRemaining';
 import { useSignupForm } from '../hooks/useSignupForm';
 import { AddressSection } from './sections/AddressSection';
 import { ContactSection } from './sections/ContactSection';
+import { ConsentSection } from './sections/ConsentSection';
 import { PasswordSection } from './sections/PasswordSection';
 import { PersonalSection } from './sections/PersonalSection';
 import { FieldErrorSummary } from './parts/FieldErrorSummary';
@@ -124,6 +125,7 @@ export function SignupForm() {
       <PersonalSection bind={form.bind} errors={mergedErrors} />
       <AddressSection bind={form.bind} errors={mergedErrors} />
       <ContactSection bind={form.bind} errors={mergedErrors} />
+      <ConsentSection />
       <PasswordSection
         bind={form.bind}
         status={passwordStatus}

@@ -25,6 +25,22 @@ export function PasswordSection({ bind, status, errors, showPassword, onTogglePa
     <section className="form-section" aria-labelledby="section-password">
       <h2 className="section-title" id="section-password">パスワード <span className="section-required">必須</span></h2>
 
+      <div className="pw-guidance" role="note" aria-label="パスワードの注意事項">
+        <span className="pw-guidance__icon" aria-hidden="true"></span>
+
+        <details className="pw-guidance__details">
+          <summary className="pw-guidance__summary">
+            パスワードは【半角英字・数字・記号の全てを含む8文字以上12文字以内】で設定してください。{' '}
+            <span className="pw-guidance__more">クリックして詳細</span>
+          </summary>
+          <div className="pw-guidance__body">
+            ※使用できる記号は - ! &quot; # $ % &amp; &apos; ( ) * + , . / : ; &lt; = &gt; ? @ [ ] ^ _ ` {'{'} | {'}'} ~ です。
+            <br />
+            大文字と小文字は区別されます。
+          </div>
+        </details>
+      </div>
+
       <div className="form-row">
         <div className="form-label" style={{ alignItems: 'flex-start' }}>
           <span className="form-label__text">パスワード<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
@@ -57,7 +73,7 @@ export function PasswordSection({ bind, status, errors, showPassword, onTogglePa
 
       <div className="form-row">
         <div className="form-label" style={{ alignItems: 'flex-start' }}>
-          <span className="form-label__text">パスワード（確認）<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
+          <span className="form-label__text">パスワード確認用<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
         </div>
         <div className="form-control">
           <div className="pw-field-row">

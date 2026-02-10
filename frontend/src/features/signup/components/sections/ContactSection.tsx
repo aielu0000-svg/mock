@@ -53,6 +53,7 @@ export function ContactSection({ bind, errors }: Props) {
           <label className="radio-item"><input type="radio" name="newsletter" value="yes" checked={newsletterBind.value === 'yes'} onChange={newsletterBind.onChange} disabled={newsletterBind.disabled} />受け取る</label>
           <label className="radio-item"><input type="radio" name="newsletter" value="no" checked={newsletterBind.value === 'no'} onChange={newsletterBind.onChange} disabled={newsletterBind.disabled} />受け取らない</label>
           <FieldError message={errors.newsletter} />
+          <p className="help-text">キャンペーンやおすすめ情報などのメールマガジンをお送りします。</p>
         </div>
       </div>
     </section>
