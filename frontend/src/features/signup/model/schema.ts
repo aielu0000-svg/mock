@@ -8,15 +8,35 @@ export function validateSignup(v: SignupFormValue) {
   if (!v.lastNameKana) errors.lastNameKana = '姓（カナ）は必須です';
   if (!v.firstNameKana) errors.firstNameKana = '名（カナ）は必須です';
 
-  if (!v.birthYear) errors.birthYear = '生年月日（年）は必須です';
+  if (!v.birthYear) {
+    errors.birthYear = '生年月日（年）は必須です';
+  } else if (!/^\d{4}$/.test(v.birthYear)) {
+    errors.birthYear = '年は4桁の数字で入力してください';
+  }
+
   if (!v.birthMonth) errors.birthMonth = '生年月日（月）は必須です';
   if (!v.birthDay) errors.birthDay = '生年月日（日）は必須です';
 
   if (!v.gender) errors.gender = '性別は必須です';
-  if (!v.email) errors.email = 'メールアドレスは必須です';
 
-  if (!v.zip1) errors.zip1 = '郵便番号（前半）は必須です';
-  if (!v.zip2) errors.zip2 = '郵便番号（後半）は必須です';
+  if (!v.email) {
+    errors.email = 'メールアドレスは必須です';
+  } else if (!v.email.includes('@')) {
+    errors.email = 'メールアドレスの形式が不正です';
+  }
+
+  if (!v.zip1) {
+    errors.zip1 = '郵便番号（前半）は必須です';
+  } else if (!/^\d{3}$/.test(v.zip1)) {
+    errors.zip1 = '郵便番号（前半）は3桁の数字で入力してください';
+  }
+
+  if (!v.zip2) {
+    errors.zip2 = '郵便番号（後半）は必須です';
+  } else if (!/^\d{4}$/.test(v.zip2)) {
+    errors.zip2 = '郵便番号（後半）は4桁の数字で入力してください';
+  }
+
   if (!v.prefecture) errors.prefecture = '都道府県は必須です';
   if (!v.addressLine1) errors.addressLine1 = '市区町村・番地は必須です';
 
