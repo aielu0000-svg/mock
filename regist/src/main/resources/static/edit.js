@@ -5,7 +5,7 @@
 
   function initMemberEditPage() {
     const path = location.pathname; // /member/{id}/edit
-    const m = path.match(/^\/(?:legacy\/)?member\/([^/]+)\/edit\/?$/);
+    const m = path.match(/^\/member\/([^/]+)\/edit\/?$/);
     const id = m ? decodeURIComponent(m[1]) : null;
 
     const root = document.getElementById("memberView");

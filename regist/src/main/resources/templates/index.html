@@ -17,32 +17,7 @@
     </main>
   </div>
 
-  <noscript>このページの利用には JavaScript が必要です。<a href="/legacy/signup">従来画面はこちら</a></noscript>
-
-  <script>
-    (function () {
-      function legacyFallback() {
-        var path = window.location.pathname || '';
-        var memberMatch = path.match(/^\/member\/([^/]+)\/edit\/?$/);
-        if (memberMatch) {
-          window.location.replace('/legacy/member/' + encodeURIComponent(decodeURIComponent(memberMatch[1])) + '/edit');
-          return;
-        }
-        window.location.replace('/legacy/signup');
-      }
-
-      var script = document.createElement('script');
-      script.type = 'module';
-      script.src = '/spa/entry.js';
-      script.onerror = legacyFallback;
-      document.body.appendChild(script);
-
-      window.setTimeout(function () {
-        if (!window.__SPA_BOOTED__) {
-          legacyFallback();
-        }
-      }, 1500);
-    })();
-  </script>
+  <noscript>このページの利用には JavaScript が必要です。</noscript>
+  <script type="module" src="/spa/entry.js"></script>
 </body>
 </html>

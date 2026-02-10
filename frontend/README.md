@@ -9,4 +9,10 @@
 
 ## Build artifact
 - GitHub Actions: `.github/workflows/frontend-build.yml`
-- 出力: `frontend/dist`
+- 出力 artifact: `frontend/dist`
+
+## Spring への配置先（重要）
+- **配置先は `regist/src/main/resources/static/spa/`** です。
+- `entry.js` / `entry.css` を含む `frontend/dist` の中身をそのまま `static/spa/` 配下へ配置してください。
+- `regist/src/main/resources/` 直下に置いても Spring の静的配信対象にならず、`/spa/entry.js` が 404 になります。
+- ローカルで自動コピーする場合は `frontend/scripts/build-and-export.mjs` を利用してください。
