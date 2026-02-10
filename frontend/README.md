@@ -4,8 +4,9 @@
 
 ## 方針
 1. API契約(`/api/members`, `/api/members/{id}`)は固定。
-2. デザインは既存 `app.css` を利用して差分最小で維持。
+2. デザインは `src/shared/styles/legacy-app.css`（MPA由来CSSを移植）で維持。
 3. Nodeがローカルにない場合は GitHub Actions で `dist` を生成し artifact を利用。
+4. ヘッドレスUIは将来的に shadcn/ui 導入を想定（現状は既存CSS資産を優先）。
 
 ## Build artifact
 - GitHub Actions: `.github/workflows/frontend-build.yml`
@@ -15,5 +16,4 @@
 - **配置先は `regist/src/main/resources/static/spa/`** です。
 - リポジトリには空ディレクトリ維持用の `regist/src/main/resources/static/spa/.gitkeep` を配置済みです。
 - `entry.js` / `entry.css` を含む `frontend/dist` の中身をそのまま `static/spa/` 配下へ配置してください。
-- `regist/src/main/resources/` 直下に置いても Spring の静的配信対象にならず、`/spa/entry.js` が 404 になります。
 - ローカルで自動コピーする場合は `frontend/scripts/build-and-export.mjs` を利用してください。

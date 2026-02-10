@@ -1,4 +1,5 @@
 @import './tokens.css';
+@import './legacy-app.css';
 
 @tailwind base;
 @tailwind components;
