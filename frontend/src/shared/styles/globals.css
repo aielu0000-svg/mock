@@ -3,5 +3,3 @@
 @tailwind utilities;
 
 @import './tokens.css';
-
-@import '/app.css';
