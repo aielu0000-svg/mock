@@ -66,10 +66,10 @@ export function PersonalSection({ bind, errors }: Props) {
 
       <div className="form-row">
         <div className="form-label" style={{ alignItems: 'flex-start' }}>
-          <span className="form-label__text">生年月日<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
+          <span className="form-label__text">生年月日（西暦）<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
         </div>
         <div className="form-control">
-          <div className="input-birthdate">
+          <div className="input-birth">
             <input className="input-text input-year" maxLength={4} inputMode="numeric" {...birthYear} />
             <span className="unit-text">年</span>
             <select className="input-select input-month" {...birthMonth}>

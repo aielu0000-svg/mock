@@ -73,6 +73,7 @@ export function useSignupForm() {
   return {
     value,
     errors,
+    submitted,
     setSubmitted,
     setValue,
     isLocked: (key: keyof SignupFormValue) => lockedKeys.has(key),
