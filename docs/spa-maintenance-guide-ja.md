@@ -428,6 +428,7 @@
 
 ### 移行時のチェックポイント
 
+- signup画面の主要フォームコントロール（Personal/Address/Contact/Password/Consent）は、shadcn互換プリミティブへ置換済み。
 - API契約（`/api/members`, `/api/members/{id}`）は変更しない。
 - `PageController` の SPA フォワード動線は変更しない。
 - 画面差分は「同等」を目標にし、完全一致に固執しすぎない（特にフォーカスリング）。
