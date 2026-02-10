@@ -1,0 +1,22 @@
+export type SignupFormValue = {
+  lastNameKanji: string;
+  firstNameKanji: string;
+  lastNameKana: string;
+  firstNameKana: string;
+  birthYear: string;
+  birthMonth: string;
+  birthDay: string;
+  gender: string;
+  email: string;
+  zip1: string;
+  zip2: string;
+  prefecture: string;
+  addressLine1: string;
+  addressLine2: string;
+  tel1: string;
+  tel2: string;
+  tel3: string;
+  newsletter: string;
+  password: string;
+  passwordConfirm: string;
+};
