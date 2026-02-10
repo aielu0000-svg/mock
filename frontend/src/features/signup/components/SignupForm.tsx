@@ -66,7 +66,7 @@ export function SignupForm() {
   };
 
   return (
-    <form className="signup-form" onSubmit={onSubmit} noValidate>
+    <form className="signup-form" id="signupForm" onSubmit={onSubmit} noValidate>
       <FieldErrorSummary messages={messages} />
       <RequiredRemaining count={requiredRemaining} />
       {hasLockedFields && <p className="help-text">※編集画面から戻ったため、基本情報の一部は固定表示です。</p>}
@@ -74,7 +74,7 @@ export function SignupForm() {
       <AddressSection bind={form.bind} errors={mergedErrors} />
       <ContactSection bind={form.bind} errors={mergedErrors} />
       <PasswordSection bind={form.bind} status={passwordStatus} errors={mergedErrors} />
-      <div className="form-actions"><button className="button button--primary" type="submit">次へ</button></div>
+      <div className="form-actions"><button className="button button--primary" type="submit" id="next">登録</button></div>
     </form>
   );
 }
