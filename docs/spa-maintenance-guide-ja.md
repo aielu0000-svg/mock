@@ -420,11 +420,11 @@
 3. `AddressSection` / `ContactSection` を同様に置換。 ✅
 4. 1セクションごとに目視確認（hover/focus/disabled）を実施。
 
-### フェーズ3（進行中）
+### フェーズ3（完了）
 
 1. `legacy-app.css` 依存のクラスを棚卸し。 ✅（初回）
-2. トークンへ寄せられる色・余白を Tailwind + token へ移管。
-3. 使用されなくなった legacy スタイルを削除。 ✅（`site-header*` / `site-brand*` / `site-nav__item` / `stepper*` / `required-remaining*` を削除）
+2. トークンへ寄せられる色・余白を Tailwind + token へ移管。 ✅（`FieldErrorSummary` / `RequiredRemaining` を Tailwind クラスへ移行）
+3. 使用されなくなった legacy スタイルを削除。 ✅（`site-header*` / `site-brand*` / `site-nav__item` / `stepper*` / `required-remaining*` / `form-error-summary*` / `field-error-group*` / `required-callout*` を削除）
 
 ### 移行時のチェックポイント
 

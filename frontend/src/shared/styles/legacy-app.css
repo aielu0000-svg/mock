@@ -408,18 +408,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   margin-top:16px;
 }
 
-.form-error-summary{
-  display:none;
-  border:1px solid var(--error);
-  background:var(--error-bg);
-  color:#111;
-  border-radius:var(--radius);
-  padding:10px 12px;
-  margin:0 0 12px;
-}
-.form-error-summary ul{margin:0; padding-left:18px}
-.form-error-summary li{margin:2px 0; color:var(--error); font-weight:800}
-.form-error-summary.is-visible{display:block}
 
 .field-error{
   min-height:16px;
@@ -428,12 +416,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   font-size:12px;
   font-weight:800;
 }
-.field-error-group{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.field-error-group .field-error{margin-top:6px}
 
 .site-footer{
   padding:18px 0 26px;
@@ -614,55 +596,7 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 .pw-error__icon{color:var(--brand); transform:translateY(2px); flex:0 0 auto}
 .pw-error__text{font-size:13px; line-height:1.55}
 
-/* ------------------------------------------------
-   Right-side required-remaining callout (match screenshot)
-------------------------------------------------- */
-.required-callout{
-  position:fixed;
-  right:0;
-  top:260px;
-  z-index:60;
-  width:260px;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.12));
-}
-.required-callout__inner{
-  background:#ea5a60;
-  color:#fff;
-  padding:14px 16px 14px 22px;
-  clip-path: polygon(12% 0, 100% 0, 100% 100%, 12% 100%, 0 50%);
-}
-.required-callout__lead{
-  margin:0 0 10px;
-  font-size:12px;
-  font-weight:800;
-  line-height:1.55;
-}
-.required-callout__bottom{
-  display:flex;
-  align-items:baseline;
-  gap:10px;
-}
-.required-callout__label{
-  font-size:16px;
-  font-weight:900;
-  letter-spacing:.02em;
-}
-.required-callout__num{
-  font-size:46px;
-  font-weight:900;
-  line-height:1;
-  color: yellow;
-}
-.required-callout__unit{
-  font-size:18px;
-  font-weight:900;
-}
 
-@media (max-width: 980px){
-  .required-callout{display:none}
-  .pw-field-row{flex-direction:column; align-items:flex-start}
-  .pw-input-wrap{max-width:100%; width:100%}
-}
 
 
 /* ===== Birthdate row hint / warning ===== */
@@ -739,11 +673,6 @@ input[type="submit"]:disabled{
   clear:both;
 }
 
-/* もし help-text が grid / flex の子要素に入っても下段に落ちるようにする */
-.input-pair .help-text,
-.field-error-group .help-text{
-  flex:0 0 100%;
-}
 
 /* grid内に入った場合は全幅 */
 .input-pair .help-text{grid-column:1 / -1;}
