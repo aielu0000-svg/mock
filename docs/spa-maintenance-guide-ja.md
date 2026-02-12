@@ -80,7 +80,8 @@
 - **運用/CI**
   - GitHub Actions（frontend build artifact出力）
 
-> 予定: UI層は将来的に shadcn/ui を導入可能。現状は MPA互換優先で legacy CSS を使用。
+> 現状: signup の主要フォームコントロールは shadcn 互換プリミティブへ置換済み。
+> ただしページ全体の見た目は legacy CSS と Tailwind を併用して維持しています。
 
 ---
 
@@ -188,9 +189,37 @@
 5. 編集画面から戻るときの固定項目ルールを変えたい  
    → `useSignupForm.ts` の `lockedKeys` 判定ロジック
 
+### 5-3. signup画面 UI対応表（画面パーツ → 実装ファイル）
+
+> 添付いただいたスクリーンショット（上から順に①〜④）と見比べる前提の対応表です。  
+> このリポジトリには添付画像ファイルを直接配置できないため、画像への直接埋め込みリンクではなく「スクリーンショット番号」で対応を明記します。
+
+| 画面上の領域 | 対応スクリーンショット | 主担当ファイル | 補助ファイル / UIプリミティブ |
+|---|---|---|---|
+| ヘッダー（JRロゴ、黒/赤タブ） | ①, ④ | `frontend/src/shared/components/layout/PageHeader.tsx` | `frontend/src/shared/styles/legacy-app.css`（`.jr-header*`, `.jr-tab*`） |
+| ページ外枠（Header/Main/Footer） | ①〜④ | `frontend/src/shared/components/layout/AppShell.tsx` | `frontend/src/shared/styles/legacy-app.css`（`.page*`, `.site-footer*`） |
+| 会員登録ページの見出し・注意文 | ① | `frontend/src/features/signup/pages/SignupPage.tsx` | `frontend/src/shared/styles/legacy-app.css`（`.notice*`） |
+| 残り必須項目コールアウト（右の赤い吹き出し） | ①〜③ | `frontend/src/features/signup/components/parts/RequiredRemaining.tsx` | `frontend/src/shared/components/ui/alert.tsx` |
+| フォーム送信の親コンテナ | ①〜③ | `frontend/src/features/signup/components/SignupForm.tsx` | `frontend/src/shared/components/ui/button.tsx`（登録ボタン） |
+| エラーサマリ（フォーム先頭） | （エラー発生時） | `frontend/src/features/signup/components/parts/FieldErrorSummary.tsx` | `frontend/src/shared/components/ui/alert.tsx` |
+| 個人情報セクション | ① | `frontend/src/features/signup/components/sections/PersonalSection.tsx` | `input.tsx`, `select.tsx`, `radio-group.tsx` |
+| 住所セクション | ② | `frontend/src/features/signup/components/sections/AddressSection.tsx` | `input.tsx`, `select.tsx`, `button.tsx` |
+| 連絡先セクション | ② | `frontend/src/features/signup/components/sections/ContactSection.tsx` | `input.tsx`, `radio-group.tsx` |
+| 利用者情報の提供（同意チェック） | ③ | `frontend/src/features/signup/components/sections/ConsentSection.tsx` | `frontend/src/shared/components/ui/checkbox.tsx` |
+| パスワードセクション（注意文、表示/非表示、ルール） | ③ | `frontend/src/features/signup/components/sections/PasswordSection.tsx` | `frontend/src/features/signup/components/parts/PasswordRuleList.tsx`, `input.tsx`, `button.tsx` |
+| 登録情報の編集（モック）画面 | ④ | `frontend/src/features/signup/pages/MemberEditPage.tsx` | `frontend/src/features/signup/api/getMember.ts` |
+
+### 5-4. UI変更時の最短ルート（対応表の使い方）
+
+1. まず「どのスクリーンショット領域を直したいか」を決める。  
+2. 上の対応表で `主担当ファイル` を開く。  
+3. 見た目だけなら `shared/styles/legacy-app.css` か Tailwind class を調整。  
+4. 入力仕様まで変えるなら、`model/uiTypes.ts` / `members.mappers.ts` / backend DTO も同時確認。
+
+
 ---
 
-## 5-3. shared層
+## 5-5. shared層
 
 - `shared/api/client.ts`
   - 共通 fetch ラッパー
@@ -312,14 +341,14 @@
 
 ---
 
-## 10. shadcn/ui導入に向けた段階移行案
+## 10. shadcn/ui移行の実績と今後の運用方針
 
-1. まず「新規UI」だけ shadcn/ui で作成
-2. 既存セクションを1つずつ置き換え
-3. `legacy-app.css` 依存を徐々に減らす
-4. 最後に不要クラスを削除
+1. signup の主要フォームコントロールは置換済み（Input/Select/RadioGroup/Checkbox/Button/Alert）。
+2. 今後は新規画面・新規部品を shadcn 互換プリミティブで追加。
+3. 既存の見た目維持が必要な箇所は legacy CSS を局所利用し、段階的に Tailwind/token へ寄せる。
+4. 置換で未使用化した legacy クラスは都度削除し、肥大化を防止する。
 
-### 導入時に触る場所
+### 継続運用で触る場所
 
 - `frontend/src/shared/components`（共通UIを置く）
 - `frontend/src/features/signup/components/sections/*`（段階置換）
