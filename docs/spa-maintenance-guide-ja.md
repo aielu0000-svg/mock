@@ -536,3 +536,34 @@
 - フィードバック: 正誤 + どこを再読するか（ファイル名と行の目安）
 
 この進め方を使えば、学習者は「理解したつもり」を避けながら、実コードで段階的に理解できる。
+
+
+---
+
+## 17. Week 1 課題の回答例とフィードバック
+
+### 受講者回答（例）
+
+1. `lastNameKanji`, `firstNameKanji`, `lastNameKana`
+2. 
+   - `lastNameKanji: '姓を入力してください。'`
+   - `firstNameKanji: '名を入力してください。'`
+   - `lastNameKana: 'セイを入力してください。'`
+3. 
+```ts
+{
+  lastNameKanji: '姓を入力してください。',
+  birthMonth: '生月を選択してください。'
+}
+```
+
+### 判定
+
+- 1 は正解（`REQUIRED_KEYS` に含まれる）。
+- 2 は正解（`REQUIRED_MESSAGES` と一致）。
+- 3 も正解（`getRequiredErrors` が返す `{ key: message }` 形式として妥当）。
+
+### 次に進むポイント
+
+- Week 2 では `useSignupForm.ts` の `bind` を `PersonalSection.tsx` 側で追う。
+- 特に `value / disabled / onChange` が `<Input {...bind('lastNameKanji')} />` にどう渡るかを確認する。
