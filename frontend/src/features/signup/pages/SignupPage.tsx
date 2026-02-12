@@ -4,7 +4,7 @@ import { SignupForm } from '../components/SignupForm';
 export function SignupPage() {
   return (
     <AppShell>
-      <h1 className="page-title">会員登録</h1>
+      <h1 className="page-title">会員登録ぎあえおｇれあおｇれいおあ</h1>
 
       <div className="notice">
         <p className="notice__text">下記項目に必要事項をご入力ください。</p>
