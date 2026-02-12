@@ -531,6 +531,7 @@
 
 ### 1回あたりのテンプレート
 
+- 前提知識の解説: 3〜5分（用語・目的・読む観点）
 - 解説: 5〜10分（重要概念を3点まで）
 - 課題: 2〜3問（短答式）
 - フィードバック: 正誤 + どこを再読するか（ファイル名と行の目安）
@@ -567,3 +568,34 @@
 
 - Week 2 では `useSignupForm.ts` の `bind` を `PersonalSection.tsx` 側で追う。
 - 特に `value / disabled / onChange` が `<Input {...bind('lastNameKanji')} />` にどう渡るかを確認する。
+
+
+---
+
+
+
+## 18. Week 2 課題の回答例とフィードバック
+
+### 受講者回答（例）
+
+1. `value, disabled, onChange`
+2. `lockedkey?`
+3. 「同じキーが重複しない。高速で判断できる」
+
+### 判定
+
+- 1 は正解。`bind` は `value / disabled / onChange` を返す。
+- 2 は惜しい。正しくは `lockedKeys.has(key)` を見て `disabled` を決める。
+- 3 は正解。`Set` は重複しない集合で、`has` 判定が明確。
+
+### 前提知識（次回から先に説明する内容）
+
+- `disabled` は「入力欄を編集不可にする HTML 属性」。
+- `lockedKeys` は `Set<keyof SignupFormValue>` で、編集不可項目のキー集合。
+- `lockedKeys.has(key)` が `true` の時、その項目は `disabled: true` になる。
+
+### 次に進むポイント（Week 3）
+
+- `main.tsx` で Router 起動を確認。
+- `routes.tsx` で URL と画面対応を確認。
+- `SignupForm.tsx` の `onSubmit` を success/fail に分けて追跡。
