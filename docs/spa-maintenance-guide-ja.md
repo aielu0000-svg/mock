@@ -488,3 +488,22 @@
 - 例: `lockedKeys.has('email')` が `true` なら email は編集不可。
 
 配列でも実装はできるが、キー重複の防止と判定の読みやすさで `Set` が適している。
+
+
+### Week 2 実践ミニ課題（React基礎の定着）
+
+1. `useSignupForm.ts` を開き、次の 3 行を声に出して説明する。
+   - `const [value, setValue] = useState...`
+   - `const errors = useMemo...`
+   - `bind: (key) => ({ value, disabled, onChange })`
+2. `Set` を配列に置き換えたら何が起きるかを 1 文で書く（例: 重複管理が必要になる）。
+3. `PersonalSection.tsx` で `bind('lastNameKanji')` が `<Input ...>` に渡る箇所を確認し、
+   「表示値」「編集可否」「変更処理」がどこから来るかをメモする。
+
+### 受講者向けチェック回答（今回の質問に対応）
+
+- 「送信ボタンを押した後にだけエラーが出る」理解は正しい。
+- `bind` の `value / disabled / onChange` の理解も正しい。
+- `Set` は「重複しない箱」。`lockedKeys.has('email')` のように、
+  特定キーが含まれているかを即座に判定するために使う。
+
