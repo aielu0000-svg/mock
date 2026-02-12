@@ -1,3 +1,5 @@
+import { Checkbox } from '../../../../shared/components/ui/checkbox';
+
 export function ConsentSection() {
   return (
     <section className="form-section" aria-labelledby="section-userinfo">
@@ -21,7 +23,7 @@ export function ConsentSection() {
 
           <div className="radio-group" role="group" aria-label="利用者情報の提供への同意">
             <label className="radio-item">
-              <input type="checkbox" id="userinfoConsent" name="userinfoConsent" defaultChecked />
+              <Checkbox id="userinfoConsent" name="userinfoConsent" defaultChecked />
               <span>同意する</span>
             </label>
           </div>

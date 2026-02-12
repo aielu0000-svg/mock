@@ -125,28 +125,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 }
 
 
-.site-header{
-  background:var(--panel);
-  border-bottom:3px solid var(--brand);
-  box-shadow:var(--shadow);
-}
-.site-header__inner{
-  max-width:var(--container);
-  margin:0 auto;
-  padding:14px 16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-.site-brand{display:flex; align-items:center; gap:10px}
-.site-brand__logo{
-  width:28px; height:28px; border-radius:4px;
-  background:linear-gradient(180deg,var(--brand),var(--brand-2));
-}
-.site-brand__text{font-weight:700; letter-spacing:.02em}
-.site-nav__item{color:var(--muted); font-size:14px}
-
 .page{padding:22px 0 32px}
 .page__inner{
   max-width:var(--container);
@@ -160,67 +138,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   letter-spacing:.02em;
 }
 
-.stepper{
-  margin:0 0 14px;
-  padding:12px 14px;
-  list-style:none;
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap:10px;
-}
-.stepper__step{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  position:relative;
-  padding:4px 4px;
-  color:var(--muted);
-  font-size:13px;
-  font-weight:600;
-}
-.stepper__circle{
-  width:22px; height:22px;
-  border-radius:999px;
-  background:#eee;
-  border:1px solid var(--line);
-  display:inline-block;
-  position:relative;
-  flex:0 0 auto;
-}
-.stepper__step--done{color:#333}
-.stepper__step--done .stepper__circle{
-  background:var(--brand);
-  border-color:var(--brand);
-}
-.stepper__step--done .stepper__circle::after{
-  content:"";
-  position:absolute;
-  inset:5px 7px 7px 6px;
-  border-right:2px solid #fff;
-  border-bottom:2px solid #fff;
-  transform:rotate(40deg);
-}
-.stepper__step--active{color:#111}
-.stepper__step--active .stepper__circle{
-  background:#fff;
-  border-color:var(--brand);
-  box-shadow:0 0 0 2px rgba(179,0,0,.12);
-}
-.stepper__step--active .stepper__circle::after{
-  content:"2";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  color:var(--brand);
-  font-weight:800;
-  font-size:13px;
-}
-
 .notice{
   background:var(--panel);
   border:1px solid var(--line);
@@ -232,28 +149,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 .notice__text{margin:0 0 6px; font-weight:700}
 .notice__list{margin:0; padding-left:18px; color:var(--muted); font-size:13px}
 .notice__list li{margin:2px 0}
-
-.required-remaining{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:0 0 10px;
-  color:var(--muted);
-  font-size:13px;
-}
-.required-remaining__label{font-weight:700}
-.required-remaining__count{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:30px;
-  padding:2px 8px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid var(--line);
-  color:#111;
-  font-weight:800;
-}
 
 .signup-form{
   background:var(--panel);
@@ -513,18 +408,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   margin-top:16px;
 }
 
-.form-error-summary{
-  display:none;
-  border:1px solid var(--error);
-  background:var(--error-bg);
-  color:#111;
-  border-radius:var(--radius);
-  padding:10px 12px;
-  margin:0 0 12px;
-}
-.form-error-summary ul{margin:0; padding-left:18px}
-.form-error-summary li{margin:2px 0; color:var(--error); font-weight:800}
-.form-error-summary.is-visible{display:block}
 
 .field-error{
   min-height:16px;
@@ -533,12 +416,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   font-size:12px;
   font-weight:800;
 }
-.field-error-group{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.field-error-group .field-error{margin-top:6px}
 
 .site-footer{
   padding:18px 0 26px;
@@ -553,7 +430,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 .site-footer__copy{font-size:12px}
 
 @media (max-width: 820px){
-  .stepper{grid-template-columns:1fr}
   .form-row{flex-direction:column; gap:8px}
   .form-label{width:auto}
   .button--primary{width:100%}
@@ -720,55 +596,7 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 .pw-error__icon{color:var(--brand); transform:translateY(2px); flex:0 0 auto}
 .pw-error__text{font-size:13px; line-height:1.55}
 
-/* ------------------------------------------------
-   Right-side required-remaining callout (match screenshot)
-------------------------------------------------- */
-.required-callout{
-  position:fixed;
-  right:0;
-  top:260px;
-  z-index:60;
-  width:260px;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.12));
-}
-.required-callout__inner{
-  background:#ea5a60;
-  color:#fff;
-  padding:14px 16px 14px 22px;
-  clip-path: polygon(12% 0, 100% 0, 100% 100%, 12% 100%, 0 50%);
-}
-.required-callout__lead{
-  margin:0 0 10px;
-  font-size:12px;
-  font-weight:800;
-  line-height:1.55;
-}
-.required-callout__bottom{
-  display:flex;
-  align-items:baseline;
-  gap:10px;
-}
-.required-callout__label{
-  font-size:16px;
-  font-weight:900;
-  letter-spacing:.02em;
-}
-.required-callout__num{
-  font-size:46px;
-  font-weight:900;
-  line-height:1;
-  color: yellow;
-}
-.required-callout__unit{
-  font-size:18px;
-  font-weight:900;
-}
 
-@media (max-width: 980px){
-  .required-callout{display:none}
-  .pw-field-row{flex-direction:column; align-items:flex-start}
-  .pw-input-wrap{max-width:100%; width:100%}
-}
 
 
 /* ===== Birthdate row hint / warning ===== */
@@ -845,11 +673,6 @@ input[type="submit"]:disabled{
   clear:both;
 }
 
-/* もし help-text が grid / flex の子要素に入っても下段に落ちるようにする */
-.input-pair .help-text,
-.field-error-group .help-text{
-  flex:0 0 100%;
-}
 
 /* grid内に入った場合は全幅 */
 .input-pair .help-text{grid-column:1 / -1;}

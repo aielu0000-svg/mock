@@ -1,6 +1,9 @@
 import { BindField, SignupValidationErrors } from '../formTypes';
 import { FieldError } from '../parts/FieldError';
 import { RequiredBadge } from '../parts/RequiredBadge';
+import { Input } from '../../../../shared/components/ui/input';
+import { Select } from '../../../../shared/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '../../../../shared/components/ui/radio-group';
 
 type Props = {
   bind: BindField;
@@ -32,11 +35,11 @@ export function PersonalSection({ bind, errors }: Props) {
           <div className="input-pair">
             <div className="input-field">
               <label className="input-sub-label">姓</label>
-              <input className="input-text" maxLength={15} {...lastNameKanji} />
+              <Input className="input-text" maxLength={15} {...lastNameKanji} />
             </div>
             <div className="input-field">
               <label className="input-sub-label">名</label>
-              <input className="input-text" maxLength={15} {...firstNameKanji} />
+              <Input className="input-text" maxLength={15} {...firstNameKanji} />
             </div>
           </div>
           <FieldError message={errors.lastNameKanji || errors.firstNameKanji} />
@@ -52,11 +55,11 @@ export function PersonalSection({ bind, errors }: Props) {
           <div className="input-pair">
             <div className="input-field">
               <label className="input-sub-label">姓</label>
-              <input className="input-text" maxLength={15} {...lastNameKana} />
+              <Input className="input-text" maxLength={15} {...lastNameKana} />
             </div>
             <div className="input-field">
               <label className="input-sub-label">名</label>
-              <input className="input-text" maxLength={15} {...firstNameKana} />
+              <Input className="input-text" maxLength={15} {...firstNameKana} />
             </div>
           </div>
           <FieldError message={errors.lastNameKana || errors.firstNameKana} />
@@ -70,15 +73,15 @@ export function PersonalSection({ bind, errors }: Props) {
         </div>
         <div className="form-control">
           <div className="input-birth">
-            <input className="input-text input-year" maxLength={4} inputMode="numeric" {...birthYear} />
+            <Input className="input-text input-year" maxLength={4} inputMode="numeric" {...birthYear} />
             <span className="unit-text">年</span>
-            <select className="input-select input-month" {...birthMonth}>
+            <Select className="input-select input-month" {...birthMonth}>
               {months.map((m) => <option key={m} value={m}>{m}</option>)}
-            </select>
+            </Select>
             <span className="unit-text">月</span>
-            <select className="input-select input-day" {...birthDay}>
+            <Select className="input-select input-day" {...birthDay}>
               {days.map((d) => <option key={d} value={d}>{d}</option>)}
-            </select>
+            </Select>
             <span className="unit-text">日</span>
             <span className="hint-bracket">［半角］</span>
           </div>
@@ -92,10 +95,10 @@ export function PersonalSection({ bind, errors }: Props) {
           <span className="form-label__text">性別<span className="required-asterisk">＊</span><span className="sr-only">必須</span></span>
         </div>
         <div className="form-control">
-          <div className="radio-group" role="radiogroup" aria-label="性別">
-            <label className="radio-item"><input type="radio" name="gender" value="male" checked={genderBind.value === 'male'} onChange={genderBind.onChange} disabled={genderBind.disabled} />男性</label>
-            <label className="radio-item"><input type="radio" name="gender" value="female" checked={genderBind.value === 'female'} onChange={genderBind.onChange} disabled={genderBind.disabled} />女性</label>
-          </div>
+          <RadioGroup className="radio-group" aria-label="性別">
+            <label className="radio-item"><RadioGroupItem name="gender" value="male" checked={genderBind.value === 'male'} onChange={genderBind.onChange} disabled={genderBind.disabled} />男性</label>
+            <label className="radio-item"><RadioGroupItem name="gender" value="female" checked={genderBind.value === 'female'} onChange={genderBind.onChange} disabled={genderBind.disabled} />女性</label>
+          </RadioGroup>
           <FieldError message={errors.gender} />
         </div>
       </div>

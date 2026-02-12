@@ -8,7 +8,11 @@ const PREFILL_KEY = (window as Window & { SIGNUP_PREFILL_KEY?: string }).SIGNUP_
 export function useSignupForm() {
   const [value, setValue] = useState<SignupFormValue>(defaultSignupFormValue);
   const [submitted, setSubmitted] = useState(false);
+  // Set を使う理由:
+  // - has(key) で編集可否を高速に判定できる
+  // - 同じ key が重複登録されない（配列より扱いが単純）
   const [lockedKeys, setLockedKeys] = useState<Set<keyof SignupFormValue>>(new Set());
+  // 送信ボタンを押すまではエラーを出さず、押した後だけ検証結果を返す。
   const errors = useMemo(() => (submitted ? validateSignup(value) : {}), [submitted, value]);
 
   useEffect(() => {
@@ -78,6 +82,7 @@ export function useSignupForm() {
     setValue,
     isLocked: (key: keyof SignupFormValue) => lockedKeys.has(key),
     bind: (key: keyof SignupFormValue) => ({
+      // Controlled form 用の 3 点セット（value / disabled / onChange）
       value: value[key],
       disabled: lockedKeys.has(key),
       onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
