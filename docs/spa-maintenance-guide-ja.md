@@ -507,3 +507,32 @@
 - `Set` は「重複しない箱」。`lockedKeys.has('email')` のように、
   特定キーが含まれているかを即座に判定するために使う。
 
+
+
+---
+
+## 16. 学習講義の進め方（対話形式）
+
+この章は「解説 → 課題 → 回答フィードバック」の対話形式で進めるための台本。
+
+### 進行ルール
+
+1. 講師（AI）がセクションを解説する。
+2. 受講者が課題に回答する。
+3. 講師（AI）が正誤判定と補足解説を返す。
+4. 次セクションへ進む。
+
+### セクション順（固定）
+
+- Week 1: JS/TS基礎（`SignupForm.tsx` 上半分 / `uiTypes.ts` / `formTypes.ts`）
+- Week 2: React基礎（`useSignupForm.ts` / `PersonalSection.tsx`）
+- Week 3: SPA/API（`main.tsx` / `router.tsx` / `routes.tsx` / `createMember.ts` / `client.ts`）
+- Week 4: 実務演習（`uiTypes.ts` → `defaults.ts` → section → mapper → backend）
+
+### 1回あたりのテンプレート
+
+- 解説: 5〜10分（重要概念を3点まで）
+- 課題: 2〜3問（短答式）
+- フィードバック: 正誤 + どこを再読するか（ファイル名と行の目安）
+
+この進め方を使えば、学習者は「理解したつもり」を避けながら、実コードで段階的に理解できる。
