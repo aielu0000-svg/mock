@@ -738,3 +738,37 @@
 - Q1: 〜
 - Q2: 〜
 - Q3: 〜
+
+
+
+
+---
+
+## 23. Week 6 課題の回答例とフィードバック
+
+### 受講者回答（例）
+
+- Q1: `members.mappers.ts` と `members.types.ts`
+- Q2: `members.types.ts` の `CreateMemberRequest` に追加する
+- Q3: わからない
+
+### 判定
+
+- Q1 は正解。フロント側の最小同期ポイントは `members.mappers.ts` と `members.types.ts`。
+- Q2 は部分正解。`CreateMemberRequest` 追加は必要だが、**backend DTO も同じ構造へ同期**する必要がある。
+- Q3 は未回答。更新漏れ検知を最速にするには、次の順が安全。
+
+### Q3 の正答例（最速検知の更新順）
+
+`members.types.ts` → `members.mappers.ts` → `uiTypes.ts` → `defaults.ts` → section(bind) → backend DTO
+
+- 先に API 型を更新すると、mapper/呼び出し側の不足が型エラーで早期に見える。
+- 次に mapper を直すと、送信 payload の欠落を抑止できる。
+- その後 UI 側（型・初期値・入力欄）を揃えると、画面/送信の両方が整合する。
+
+### 参照ページ（見るファイル）
+
+- `frontend/src/features/signup/api/members.types.ts`
+- `frontend/src/features/signup/api/members.mappers.ts`
+- `frontend/src/features/signup/model/uiTypes.ts`
+- `frontend/src/features/signup/model/defaults.ts`
