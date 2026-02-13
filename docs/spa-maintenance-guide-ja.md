@@ -637,3 +637,38 @@
 - `frontend/src/app/main.tsx`（Q1）
 - `frontend/src/app/routes.tsx`（Q2）
 - `frontend/src/features/signup/components/SignupForm.tsx`（Q3）
+
+
+
+
+---
+
+## 20. Week 4 課題の回答例とフィードバック
+
+### 受講者回答（例）
+
+1. `uiTypes.ts` に変数を追加
+2. `defaults.ts`
+3. `members.mappers.ts`
+
+### 判定
+
+- 1 は正解。追加項目（例: `occupation`）は `SignupFormValue` 型へ先に追加する。
+- 2 は正解。初期値は `defaultSignupFormValue` に追加する。
+- 3 は正解。送信 payload へ載せるため `toCreateMemberRequest` の写像を更新する。
+
+### 参照ページ（見るファイル）
+
+- `frontend/src/features/signup/model/uiTypes.ts`（型の追加）
+- `frontend/src/features/signup/model/defaults.ts`（初期値の追加）
+- `frontend/src/features/signup/api/members.mappers.ts`（UI→API 変換）
+
+### 実装時チェックリスト（最終）
+
+1. `uiTypes.ts` に新規キー追加（型エラーの起点を先に作る）。
+2. `defaults.ts` に初期値を追加。
+3. 対象 section へ入力欄を追加し `bind('newKey')` を接続。
+4. `members.mappers.ts` で API DTO へ写像。
+5. `members.types.ts` と backend DTO を同期。
+6. backend validation を追加（必要時）。
+7. 送信成功後の表示・遷移・エラー表示を手動確認。
