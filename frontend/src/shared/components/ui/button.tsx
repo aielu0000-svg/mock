@@ -7,8 +7,8 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
-  primary: 'bg-[#00a0e9] text-white hover:bg-[#0086c3] focus-visible:ring-[#00a0e9]',
-  secondary: 'bg-white text-[#00a0e9] border border-[#00a0e9] hover:bg-sky-50 focus-visible:ring-[#00a0e9]'
+  primary: 'bg-[#e40112] text-white hover:bg-[#b3000e] focus-visible:ring-[#e40112]',
+  secondary: 'bg-white text-[#e40112] border border-[#e40112] hover:bg-[#fff1f3] focus-visible:ring-[#e40112]'
 };
 
 const sizeClasses: Record<NonNullable<ButtonProps['size']>, string> = {
