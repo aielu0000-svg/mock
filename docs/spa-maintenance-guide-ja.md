@@ -705,3 +705,36 @@
 - `frontend/src/features/signup/model/defaults.ts`
 - `frontend/src/features/signup/api/members.mappers.ts`
 - `frontend/src/features/signup/api/members.types.ts`
+
+
+
+
+---
+
+## 22. 次の講義（Week 6: API契約とDTO同期の実践）
+
+### 前提知識（先に読む）
+
+- フロントの `members.mappers.ts` は UI値を API契約へ写像する境界。
+- `members.types.ts` は API契約の型で、backend DTO と不一致だと送受信エラーの原因になる。
+- 新規項目を追加したら「UI型・初期値・mapper・API型・backend DTO」を同時に揃える。
+
+### 解説（重要3点）
+
+1. `SignupFormValue` にキーを追加しただけでは API へは送られない。`toCreateMemberRequest` で明示的な写像が必要。
+2. `CreateMemberRequest` 型へ追加しないと、mapper 側で型エラーまたは項目欠落が起きる。
+3. backend DTO の受け口が未更新だと、サーバーで 400/500 や項目無視が発生する。
+
+### 課題（参照ページつき）
+
+1. `occupation` を API送信に含めるため、フロント側で最低限どの2ファイルを同時更新すべきか。
+   - 参照: `frontend/src/features/signup/api/members.mappers.ts`
+   - 参照: `frontend/src/features/signup/api/members.types.ts`
+2. `occupation` を `name` 配下に置く場合、backend 側でどの構造を合わせる必要があるか（文章で回答）。
+3. フロントで更新漏れを最も早く検知できる順序を1行で書く。
+
+### 回答フォーマット
+
+- Q1: 〜
+- Q2: 〜
+- Q3: 〜
