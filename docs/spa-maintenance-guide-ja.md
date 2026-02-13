@@ -672,3 +672,36 @@
 5. `members.types.ts` と backend DTO を同期。
 6. backend validation を追加（必要時）。
 7. 送信成功後の表示・遷移・エラー表示を手動確認。
+
+
+
+
+---
+
+## 21. Week 5 課題の回答例とフィードバック
+
+### 受講者回答（例）
+
+1. `occupation: string;`
+2. `occupation: '';`
+3. 「`name:` の中に `occupation: v.occupatioon` を追加する」
+
+### 判定
+
+- 1 は正解。`SignupFormValue` へ `occupation: string` を追加する方針で良い。
+- 2 は正解。`defaultSignupFormValue` へ `occupation: ''` を追加する。
+- 3 は部分正解。**追加場所の考え方は良いが、プロパティ名の typo に注意**。
+  - 正: `occupation: v.occupation`
+  - 誤: `occupation: v.occupatioon`
+
+### 補足（構造の確認）
+
+- `occupation` を `name` の中に入れるか、トップレベルに置くかは API 契約次第。
+- 今回の回答どおり `name` 配下に置く場合は、`members.types.ts` と backend DTO も同じ構造へ揃える。
+
+### 参照ページ（見るファイル）
+
+- `frontend/src/features/signup/model/uiTypes.ts`
+- `frontend/src/features/signup/model/defaults.ts`
+- `frontend/src/features/signup/api/members.mappers.ts`
+- `frontend/src/features/signup/api/members.types.ts`
