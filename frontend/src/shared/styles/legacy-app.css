@@ -8,7 +8,7 @@
   --line-2:#ececec;
   --brand:#e60012;
   --brand-2:#b0000e;
-  --focus:#2b7cff;
+  --focus:#e60012;
   --required:#e60012;
   --optional:#6b6b6b;
   --error:#b00020;
@@ -293,7 +293,7 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 .input-text:focus,
 .input-select:focus{
   border-color:var(--focus);
-  box-shadow:0 0 0 3px rgba(43,124,255,.16);
+  box-shadow:0 0 0 3px rgba(230,0,18,.16);
 }
 
 .input-error{
@@ -531,7 +531,7 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 }
 
 .pw-visibility:focus{
-  outline: 2px solid rgba(43,124,255,.35);
+  outline: 2px solid rgba(230,0,18,.35);
   outline-offset: 2px;
 }
 
@@ -598,6 +598,43 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 
 
 
+
+
+.required-remaining{
+  position:fixed;
+  right:0;
+  top:260px;
+  z-index:60;
+  width:260px;
+  padding:0 !important;
+  border:1px solid #f8d98f !important;
+  background:#fff7de !important;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+.required-remaining__body{
+  background:#ea5a60;
+  color:#fff;
+  padding:14px 16px 14px 22px;
+  clip-path:polygon(12% 0,100% 0,100% 100%,12% 100%,0 50%);
+}
+.required-remaining__lead{
+  margin:0 0 10px;
+  font-size:12px;
+  font-weight:800;
+  line-height:1.55;
+}
+.required-remaining__count-wrap{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+}
+.required-remaining__label{font-size:16px;font-weight:900;letter-spacing:.02em}
+.required-remaining__count{font-size:46px;line-height:1;font-weight:900;color:#ffe24a}
+.required-remaining__unit{font-size:20px;font-weight:900}
+
+@media (max-width: 1023px){
+  .required-remaining{display:none !important;}
+}
 
 /* ===== Birthdate row hint / warning ===== */
 .inline-warn{

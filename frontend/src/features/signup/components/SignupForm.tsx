@@ -14,6 +14,7 @@ import { RequiredRemaining } from './parts/RequiredRemaining';
 import { normalizeFieldErrors } from '../../../shared/api/errors';
 import { SignupFormValue } from '../model/uiTypes';
 import { Button } from '../../../shared/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const REQUIRED_MESSAGES: Partial<Record<keyof SignupFormValue, string>> = {
   lastNameKanji: '姓を入力してください。',
@@ -54,6 +55,7 @@ function getRequiredErrors(value: SignupFormValue) {
 }
 
 export function SignupForm() {
+  const navigate = useNavigate();
   const form = useSignupForm();
   const [serverError, setServerError] = useState<string>('');
   const [serverFieldErrors, setServerFieldErrors] = useState<Record<string, string>>({});
@@ -95,7 +97,7 @@ export function SignupForm() {
       const res = await createMember(toCreateMemberRequest(form.value));
       if (res.id) {
         alert('登録しました');
-        location.href = `/member/${encodeURIComponent(res.id)}/edit`;
+        navigate(`/member/${encodeURIComponent(res.id)}/edit`);
       }
     } catch (error) {
       const fieldErrors = normalizeFieldErrors(error);
