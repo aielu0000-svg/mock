@@ -544,13 +544,6 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   fill: currentColor;
 }
 
-.pw-visibility__glyph{
-  font-size:18px;
-  line-height:1;
-  display:block;
-  pointer-events:none;
-}
-
 /* disabled 見た目を維持したい場合（ロック項目と統一） */
 .pw-visibility[disabled]{ cursor: not-allowed; opacity: .6; }
 
