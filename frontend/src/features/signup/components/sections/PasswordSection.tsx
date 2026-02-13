@@ -63,8 +63,8 @@ export function PasswordSection({ bind, status, errors, showPassword, onTogglePa
             <span className="pw-error__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="18" height="18">
                 <path d="M12 2 1 21h22L12 2z" fill="currentColor" />
-                <path d="M12 9v5" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-                <path d="M12 17h.01" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
+                <path d="M12 9v5" stroke="# fff" strokeWidth="2" strokeLinecap="round" />
+                <path d="M12 17h.01" stroke="# fff" strokeWidth="3" strokeLinecap="round" />
               </svg>
             </span>
             <span className="pw-error__text" id="requiredErrorMessageByPassWord">パスワードを入力してください。</span>
@@ -93,8 +93,8 @@ export function PasswordSection({ bind, status, errors, showPassword, onTogglePa
             <span className="pw-error__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="18" height="18">
                 <path d="M12 2 1 21h22L12 2z" fill="currentColor" />
-                <path d="M12 9v5" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-                <path d="M12 17h.01" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
+                <path d="M12 9v5" stroke="# fff" strokeWidth="2" strokeLinecap="round" />
+                <path d="M12 17h.01" stroke="# fff" strokeWidth="3" strokeLinecap="round" />
               </svg>
             </span>
             <span className="pw-error__text" id="requiredErrorMessageByResultPassword">パスワード確認用を入力してください。</span>
