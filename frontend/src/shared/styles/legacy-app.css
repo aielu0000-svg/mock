@@ -601,10 +601,11 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 
 
 .required-remaining{
-  position:fixed;
-  top:140px;
-  right:16px;
+  position:fixed !important;
+  top:140px !important;
+  right:16px !important;
   left:auto !important;
+  bottom:auto !important;
   z-index:60;
   width:320px !important;
   max-width:320px !important;
