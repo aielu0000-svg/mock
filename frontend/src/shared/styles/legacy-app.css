@@ -604,8 +604,10 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   position:fixed;
   top:312px;
   right:max(0px, calc((100vw - var(--container)) / 2 - 360px));
+  left:auto !important;
   z-index:60;
-  width:360px;
+  width:360px !important;
+  max-width:360px !important;
   padding:0 !important;
   border:0 !important;
   background:transparent !important;
@@ -635,7 +637,8 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
 @media (max-width: 1360px){
   .required-remaining{
     right:12px;
-    width:320px;
+    width:320px !important;
+    max-width:320px !important;
   }
 }
 
