@@ -528,6 +528,7 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   display: grid;
   place-items: center;
   cursor: pointer;
+  color:#555;
 }
 
 .pw-visibility:focus{
@@ -540,6 +541,7 @@ code{background:#fafafa; border:1px solid var(--line-2); padding:0 .35em; border
   height: 22px;
   display: block;
   pointer-events: none;
+  fill: currentColor;
 }
 
 /* disabled 見た目を維持したい場合（ロック項目と統一） */
