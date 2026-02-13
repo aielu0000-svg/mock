@@ -51,9 +51,7 @@ export function PasswordSection({ bind, status, errors, showPassword, onTogglePa
           <div className="pw-field-row">
             <div className="pw-input-wrap">
               <Input type={showPassword ? 'text' : 'password'} className="input-text input-text--pw" maxLength={12} autoComplete="new-password" id="passWord" {...password} />
-              <Button className={`pw-visibility${showPassword ? ' is-visible' : ''}`} variant="secondary" size="default" type="button" id="passwordToggle" aria-label={showPassword ? 'パスワードを隠す' : 'パスワードを表示'} aria-pressed={showPassword} onClick={onTogglePassword}>
-                <img className="pw-visibility__img" src={iconSrc} alt="" aria-hidden="true" draggable={false} />
-              </Button>
+              <Button className={`pw-visibility${showPassword ? ' is-visible' : ''}`} variant="secondary" size="default" type="button" id="passwordToggle" aria-label={showPassword ? 'パスワードを隠す' : 'パスワードを表示'} aria-pressed={showPassword} onClick={onTogglePassword} style={{ backgroundImage: `url(${iconSrc})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: '22px 22px' }} />
             </div>
             <span className="pw-note" id="pwNote">[半角12文字以内]</span>
           </div>
@@ -81,9 +79,7 @@ export function PasswordSection({ bind, status, errors, showPassword, onTogglePa
           <div className="pw-field-row">
             <div className="pw-input-wrap">
               <Input type={showPassword ? 'text' : 'password'} className="input-text input-text--pw" maxLength={12} autoComplete="new-password" id="resultPassword" {...passwordConfirm} />
-              <Button className={`pw-visibility${showPassword ? ' is-visible' : ''}`} variant="secondary" size="default" type="button" id="passwordToggle2" aria-label={showPassword ? 'パスワード確認用を隠す' : 'パスワード確認用を表示'} aria-pressed={showPassword} onClick={onTogglePassword}>
-                <img className="pw-visibility__img" src={iconSrc} alt="" aria-hidden="true" draggable={false} />
-              </Button>
+              <Button className={`pw-visibility${showPassword ? ' is-visible' : ''}`} variant="secondary" size="default" type="button" id="passwordToggle2" aria-label={showPassword ? 'パスワード確認用を隠す' : 'パスワード確認用を表示'} aria-pressed={showPassword} onClick={onTogglePassword} style={{ backgroundImage: `url(${iconSrc})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: '22px 22px' }} />
             </div>
             <span className="pw-note" id="pwNote2">[半角12文字以内]</span>
           </div>
