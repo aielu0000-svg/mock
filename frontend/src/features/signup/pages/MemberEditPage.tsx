@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getMember } from '../api/getMember';
 import { MemberView } from '../api/members.types';
 import { AppShell } from '../../../shared/components/layout/AppShell';
@@ -8,6 +8,7 @@ const PREFILL_KEY = (window as Window & { SIGNUP_PREFILL_KEY?: string }).SIGNUP_
 
 export function MemberEditPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [view, setView] = useState<MemberView | null>(null);
   const [hasError, setHasError] = useState(false);
 
@@ -38,7 +39,7 @@ export function MemberEditPage() {
   const onBackToSignup = () => {
     if (!view) return;
     sessionStorage.setItem(PREFILL_KEY, JSON.stringify(toSignupPrefill(view)));
-    window.location.href = '/signup';
+    navigate('/signup');
   };
 
   return (
