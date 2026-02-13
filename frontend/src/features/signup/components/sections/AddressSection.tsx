@@ -54,6 +54,7 @@ export function AddressSection({ bind, errors }: Props) {
             {PREFECTURES.map((p) => <option key={p} value={p}>{p}</option>)}
           </Select>
           <FieldError message={errors.prefecture} />
+          <p className="help-text"> </p>
         </div>
       </div>
 
